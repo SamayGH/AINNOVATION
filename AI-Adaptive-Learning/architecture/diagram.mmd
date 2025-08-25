@@ -1,0 +1,35 @@
+flowchart TD
+    subgraph UserDevice[📱 Rural Learner - Mobile Device]
+        App[React Native App]
+        LocalDB[SQLite - Offline Storage]
+    end
+
+    subgraph Backend[☁️ Azure Cloud Backend]
+        AppService[Azure App Service - Node.js/Express APIs]
+        Blob[Azure Blob Storage - Content Sync]
+        MongoDB[(MongoDB Database)]
+        Cognitive[Azure Cognitive Services - NLP/Translation]
+        ML[Python ML Engine - Adaptive Learning]
+        Monitor[Azure Monitor - Analytics & Performance]
+    end
+
+    subgraph Ecosystem[🌍 External Ecosystem]
+        Mentors[👨‍🏫 Mentor Network]
+        Jobs[💼 Local Job Boards & Employers]
+    end
+
+    App -->|Sync / Offline Updates| LocalDB
+    App -->|API Requests| AppService
+    LocalDB <-->|Sync when Online| Blob
+
+    AppService --> MongoDB
+    AppService --> Blob
+    AppService --> Cognitive
+    AppService --> ML
+    AppService --> Monitor
+
+    Cognitive --> App
+    ML --> App
+
+    AppService --> Mentors
+    AppService --> Jobs
